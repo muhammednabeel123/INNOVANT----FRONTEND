@@ -19,7 +19,7 @@
         <div class="images-container">
             <div *ngFor="let image of selectedImages; let i = index" class="selected-image">
               <span class="close-button" (click)="removeImage(i)">X</span>
-              <img [src]="'http://localhost:3000/uploads/' + image.url" class="h-14">
+              <img [src]="'https://inovant.onrender.com/' + image.url" class="h-14">
             </div>
             <div *ngFor="let image of newlySelectedImages; let i = index" class="selected-image">
               <span class="close-button" (click)="removeNewImage(i)">X</span>
