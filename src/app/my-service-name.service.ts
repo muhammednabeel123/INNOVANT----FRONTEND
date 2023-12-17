@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment.development';
+import { Product } from './interface/user-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,12 @@ export class MyServiceNameService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<any> {
-    return this.http.get<any>(`${this.url}/products`,);
+  getProducts(): Observable<Product> {
+    return this.http.get<Product>(`${this.url}/products`,);
   }
-  addProduct(formData:any): Observable<any> {
+  addProduct(formData:FormData): Observable<Product> {
     console.log(formData,"reching here")
-    return this.http.post<any>(`${this.url}/add-products`,formData);
+    return this.http.post<Product>(`${this.url}/add-products`,formData);
   }
   deleteUser(id: number): Observable<any> {
     return this.http.delete<any>(`${this.url}/products/${id}`);

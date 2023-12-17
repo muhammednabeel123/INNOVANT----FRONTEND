@@ -3,6 +3,7 @@ import { MyServiceNameService } from 'src/app/my-service-name.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { EditProductComponent } from '../edit-product/edit-product.component';
+import { Product } from 'src/app/interface/user-interface';
 
 @Component({
   selector: 'app-view-product',
@@ -24,7 +25,7 @@ export class ViewProductComponent implements OnInit {
   }
 
   getAll(): void {
-    this.service.getProducts().subscribe((res: any) => {
+    this.service.getProducts().subscribe((res:Product) => {
       this.users$ = res;
       console.log(this.users$, "this is data");
     });
