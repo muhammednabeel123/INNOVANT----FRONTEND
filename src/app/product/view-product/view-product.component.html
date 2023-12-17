@@ -153,47 +153,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let user of users$; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="w-4 p-4">
+                             <ng-container *ngIf="users$ && users$.length > 0; else noDataMessage">
+                                <!-- Loop through users if there are users available -->
+                                <tr *ngFor="let user of users$; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                  <td class="w-4 p-4">
                                     <div class="flex items-center">
-                                       
-                                        <label for="checkbox-table-search-1" class="sr-only">No</label>
+                                      <label for="checkbox-table-search-1" class="sr-only">No</label>
                                     </div>
-                                </td>
-                                <!-- <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                  
-                                    
-                                        <div class="text-base font-semibold">{{ user.id }}</div>
-                                     
-                                    
-                                </th> -->
-                                <td class="px-6 py-4 text-base font-semibold">
-                                    {{ user.id }}
-                                    </td>
-                                <td class="px-6 py-4 text-base font-semibold">
-                                {{user.name}}
-                                </td>
-                                <td class="px-6 py-4 text-base font-semibold">
-                                    {{user.price}}
                                   </td>
+                                  <td class="px-6 py-4 text-base font-semibold">{{ user.id }}</td>
+                                  <td class="px-6 py-4 text-base font-semibold">{{ user.name }}</td>
+                                  <td class="px-6 py-4 text-base font-semibold">{{ user.price }}</td>
                                   <td class="px-6 py-4 flex gap-4">
-                                    <ng-container *ngFor="let image of user.images" >
-                                        <img [src]="'https://inovant.onrender.com/uploads/'+ image" class="h-14 ">
+                                    <ng-container *ngFor="let image of user.images">
+                                      <img [src]="'https://inovant.onrender.com/uploads/' + image" class="h-14">
                                     </ng-container>
                                   </td>
-                                  <td class="px-6 py-4  text-red-900 whitespace-nowrap dark:text-red-600 text-base font-semibold">
+                                  <td class="px-6 py-4 text-red-900 whitespace-nowrap dark:text-red-600 text-base font-semibold">
                                     <button (click)="deleteUser(user.id)">Delete</button>
                                   </td>
-                                  <td class="px-6 py-4  text-green-900 whitespace-nowrap dark:text-green-600 text-base font-semibold">
+                                  <td class="px-6 py-4 text-green-900 whitespace-nowrap dark:text-green-600 text-base font-semibold">
                                     <button (click)="EditUser(user.id)">Edit</button>
                                   </td>
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                            </tr>
+                                </tr>
+                              </ng-container>
+                              <ng-template #noDataMessage>
+                                <!-- Display a message when there are no users -->
+                                <tr>
+                                  <td colspan="7" class="text-center py-4 text-gray-500 dark:text-gray-400">
+                                    No data available. Please add some data.
+                                  </td>
+                                </tr>
+                              </ng-template>
                             
                             
                             
