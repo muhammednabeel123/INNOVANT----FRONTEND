@@ -9,7 +9,7 @@ import { Product } from './interface/user-interface';
 })
 export class MyServiceNameService {
 
-  private readonly url = 'https://backend-zaht.onrender.com/'
+  private readonly url = 'https://backend-zaht.onrender.com'
 
   constructor(private http: HttpClient) { }
 
