@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditProductComponent } from './product/edit-product/edit-product.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { EditProductComponent } from './product/edit-product/edit-product.compon
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
+    SweetAlert2Module.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

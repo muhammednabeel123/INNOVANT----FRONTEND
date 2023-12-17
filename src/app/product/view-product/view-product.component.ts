@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { EditProductComponent } from '../edit-product/edit-product.component';
 import { Product } from 'src/app/interface/user-interface';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-view-product',
@@ -42,16 +44,33 @@ export class ViewProductComponent implements OnInit {
       this.ngOnInit()
     });
   }
-  deleteUser(userId: number): void {
-    this.service.deleteUser(userId).subscribe(
-      (response) => {
-        console.log("user has successfully deleted")
-        this.ngOnInit()
-      },
-      (error) => {
-        console.error('Error deleting user:', error);
+  confirmDelete(userId: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to delete this user.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deleteUser(userId).subscribe(
+          (response) => {
+            console.log('User has been successfully deleted');
+            // Optionally, you can provide feedback to the user after deletion
+            Swal.fire('Deleted!', 'The user has been deleted.', 'success');
+            // Perform any other actions after successful deletion if needed
+            this.ngOnInit(); // Example: Reloading the data after deletion
+          },
+          (error) => {
+            console.error('Error deleting user:', error);
+            Swal.fire('Error', 'There was an error deleting the user.', 'error');
+            // Optionally, provide an error message if deletion fails
+          }
+        );
       }
-    );
+    });
   }
 
   EditUser(userId: number): void {
