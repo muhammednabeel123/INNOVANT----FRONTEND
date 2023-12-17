@@ -58,15 +58,15 @@ export class ViewProductComponent implements OnInit {
         this.service.deleteUser(userId).subscribe(
           (response) => {
             console.log('User has been successfully deleted');
-            // Optionally, you can provide feedback to the user after deletion
+           
             Swal.fire('Deleted!', 'The user has been deleted.', 'success');
-            // Perform any other actions after successful deletion if needed
-            this.ngOnInit(); // Example: Reloading the data after deletion
+          
+            this.ngOnInit(); 
           },
           (error) => {
             console.error('Error deleting user:', error);
             Swal.fire('Error', 'There was an error deleting the user.', 'error');
-            // Optionally, provide an error message if deletion fails
+         
           }
         );
       }
