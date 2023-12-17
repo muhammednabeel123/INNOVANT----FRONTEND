@@ -1,0 +1,36 @@
+<div class="modal-container">
+    <h1 class="text-2xl font-bold mb-4">Edit Product</h1>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price">
+      </mat-form-field>
+     
+      <div class="file-input-container">
+        
+        <input type="file" (change)="onFileSelected($event)" multiple>
+        <label for="fileInput" class="file-input-label">
+          Select Images
+        </label>
+        <div class="images-container">
+            <div *ngFor="let image of selectedImages; let i = index" class="selected-image">
+              <span class="close-button" (click)="removeImage(i)">X</span>
+              <img [src]="'http://localhost:3000/uploads/' + image.url" class="h-14">
+            </div>
+            <div *ngFor="let image of newlySelectedImages; let i = index" class="selected-image">
+              <span class="close-button" (click)="removeNewImage(i)">X</span>
+              <img [src]="image.url" class="h-14">
+            </div>
+          </div>
+          </div>
+          
+     
+  
+      <button mat-raised-button color="primary" type="submit">save</button>
+    </form>
+  </div>
+  
